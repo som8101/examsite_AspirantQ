@@ -21,14 +21,19 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
   const isPasswordValid = hasMinLength && hasUppercase && hasNumber && hasSpecial;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-       <div className="max-w-md w-full p-8 bg-white border border-slate-200 rounded-2xl shadow-xl">
+    <div className="min-h-screen flex items-center justify-center bg-transparent py-12 px-4 sm:px-6 lg:px-8 relative z-0 overflow-hidden">
+       {/* Background Decorators */}
+       <div className="absolute top-0 left-0 w-full h-full -z-10 bg-mesh-animated opacity-100"></div>
+       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/30 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
+
+       <div className="max-w-md w-full p-8 glass-panel rounded-3xl relative z-10 border border-border shadow-2xl backdrop-blur-2xl">
            <div className="flex justify-center mb-8">
              <div className="flex items-center gap-2">
-               <div className="bg-indigo-600 p-2 rounded-xl shadow-sm">
+               <div className="bg-gradient-to-br from-primary to-secondary p-2 rounded-xl shadow-lg shadow-primary/20">
                  <BookOpen className="h-6 w-6 text-white" />
                </div>
-               <span className="text-2xl font-black text-slate-900 tracking-tight">ExamPlatform</span>
+               <span className="text-2xl font-black tracking-tight drop-shadow-sm">Aspirants Q</span>
              </div>
            </div>
 
@@ -46,31 +51,31 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
             </div>
            )}
 
-           <Tabs value={role} onValueChange={(v) => setRole(v as 'student'|'admin')} className="w-full mb-6">
-              <TabsList className="grid w-full grid-cols-2 p-1 bg-slate-100 rounded-lg h-12">
-                 <TabsTrigger value="student" className="rounded-md font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm text-sm">Student Portal</TabsTrigger>
-                 <TabsTrigger value="admin" className="rounded-md font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm text-sm">Admin Portal</TabsTrigger>
+            <Tabs value={role} onValueChange={(v) => setRole(v as 'student'|'admin')} className="w-full mb-6">
+              <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 rounded-lg h-12 border border-border">
+                 <TabsTrigger value="student" className="rounded-md font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm text-sm transition-all">Student Portal</TabsTrigger>
+                 <TabsTrigger value="admin" className="rounded-md font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm text-sm transition-all">Admin Portal</TabsTrigger>
               </TabsList>
            </Tabs>
 
            {view === 'login' && (
              <form action={login} className="space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
                <div className="space-y-2">
-                  <Label htmlFor="loginId">User ID</Label>
-                  <Input id="loginId" name="loginId" type="text" required placeholder={`Enter your ${role === 'admin' ? 'Admin' : 'Student'} ID`} className="h-11 rounded-lg" />
+                  <Label htmlFor="loginId" className="text-foreground/90">User ID</Label>
+                  <Input id="loginId" name="loginId" type="text" required placeholder={`Enter your ${role === 'admin' ? 'Admin' : 'Student'} ID`} className="h-11 rounded-lg bg-background/50 border-border" />
                </div>
                <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                     <Label htmlFor="password">Password</Label>
-                     <button type="button" onClick={() => setView('forgot')} className="text-xs text-indigo-600 font-medium hover:underline">Forgot password?</button>
+                     <Label htmlFor="password" className="text-foreground/90">Password</Label>
+                     <button type="button" onClick={() => setView('forgot')} className="text-sm font-medium text-primary hover:text-primary/80">Forgot?</button>
                   </div>
-                  <Input id="password" name="password" type="password" required className="h-11 rounded-lg" />
+                  <Input id="password" name="password" type="password" required placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} className="h-11 rounded-lg bg-background/50 border-border" />
                </div>
-               <Button type="submit" className="w-full h-12 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-base shadow-md shadow-indigo-200">
+               <Button type="submit" className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300">
                   Log In as {role === 'admin' ? 'Admin' : 'Student'}
                </Button>
-               <p className="text-center text-sm text-slate-500 mt-4">
-                 Don't have an account? <button type="button" onClick={() => setView('signup')} className="text-indigo-600 font-medium hover:underline">Sign up</button>
+               <p className="text-center text-sm text-foreground/70 mt-4">
+                 Don't have an account? <button type="button" onClick={() => setView('signup')} className="text-primary font-medium hover:underline">Sign up</button>
                </p>
              </form>
            )}
@@ -81,34 +86,34 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
                
                <div className="grid grid-cols-2 gap-4">
                  <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input id="fullName" name="fullName" required placeholder="John Doe" className="h-11 rounded-lg" />
+                    <Label htmlFor="fullName" className="text-foreground/90">Full Name</Label>
+                    <Input id="fullName" name="fullName" required placeholder="John Doe" className="h-11 rounded-lg bg-background/50 border-border" />
                  </div>
                  <div className="space-y-2">
-                    <Label htmlFor="signupLoginId">Choose User ID</Label>
-                    <Input id="signupLoginId" name="loginId" required placeholder={role === 'admin' ? 'ADM-01' : 'STU-123'} className="h-11 rounded-lg" />
+                    <Label htmlFor="signupLoginId" className="text-foreground/90">Choose User ID</Label>
+                    <Input id="signupLoginId" name="loginId" required placeholder={role === 'admin' ? 'ADM-01' : 'STU-123'} className="h-11 rounded-lg bg-background/50 border-border" />
                  </div>
                </div>
 
                <div className="space-y-2">
-                  <Label htmlFor="signupEmail">Email</Label>
-                  <Input id="signupEmail" name="email" type="email" required placeholder="you@example.com" className="h-11 rounded-lg" />
+                  <Label htmlFor="signupEmail" className="text-foreground/90">Email</Label>
+                  <Input id="signupEmail" name="email" type="email" required placeholder="you@example.com" className="h-11 rounded-lg bg-background/50 border-border" />
                </div>
 
                <div className="space-y-2">
-                  <Label htmlFor="signupPassword">Create Password</Label>
+                  <Label htmlFor="signupPassword" className="text-foreground/90">Create Password</Label>
                   <Input 
                     id="signupPassword" 
                     name="password" 
                     type="password" 
                     required 
-                    className="h-11 rounded-lg" 
+                    className="h-11 rounded-lg bg-background/50 border-border" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   
                   <div className="pt-2 pb-1 space-y-2">
-                     <div className="text-xs font-medium text-slate-500 mb-1">Password Requirements:</div>
+                     <div className="text-xs font-medium text-foreground/70 mb-1">Password Requirements:</div>
                      <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-xs">
                        <div className={`flex items-center gap-1.5 ${hasMinLength ? 'text-emerald-600' : 'text-slate-400'}`}>
                          {hasMinLength ? <CheckCircle2 className="h-3.5 w-3.5" /> : <XCircle className="h-3.5 w-3.5" />} 8+ Characters
@@ -126,11 +131,11 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
                   </div>
                </div>
 
-               <Button type="submit" disabled={!isPasswordValid} className="w-full h-12 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-base shadow-md shadow-indigo-200 mt-2">
+               <Button type="submit" disabled={!isPasswordValid} className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300 mt-2">
                   Create {role === 'admin' ? 'Admin' : 'Student'} Account
                </Button>
-               <p className="text-center text-sm text-slate-500 mt-4">
-                 Already have an account? <button type="button" onClick={() => setView('login')} className="text-indigo-600 font-medium hover:underline">Log in</button>
+               <p className="text-center text-sm text-foreground/70 mt-4">
+                 Already have an account? <button type="button" onClick={() => setView('login')} className="text-primary font-medium hover:underline">Log in</button>
                </p>
              </form>
            )}

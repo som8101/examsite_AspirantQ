@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Exam - Aspirants Q</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d6dcd1",
+                        "secondary-fixed": "#d1e9ce",
+                        "background": "#f5fbf0",
+                        "on-secondary-container": "#526853",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#edf3e7",
+                        "on-error": "#ffffff",
+                        "primary": "#53634c",
+                        "on-primary-fixed": "#111f0d",
+                        "inverse-primary": "#baccb0",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#baccb0",
+                        "on-surface-variant": "#444841",
+                        "on-tertiary-fixed-variant": "#3d4b37",
+                        "on-primary-fixed-variant": "#3c4b36",
+                        "on-secondary-fixed-variant": "#374c38",
+                        "on-primary-container": "#2e3c28",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#54624e",
+                        "surface-container-high": "#e4eadf",
+                        "primary-container": "#96a78d",
+                        "surface-bright": "#f5fbf0",
+                        "on-tertiary-fixed": "#121f0f",
+                        "surface-tint": "#53634c",
+                        "on-background": "#171d16",
+                        "secondary-fixed-dim": "#b5cdb3",
+                        "secondary": "#4e644f",
+                        "on-surface": "#171d16",
+                        "tertiary-container": "#97a78f",
+                        "surface-container-low": "#eff6ea",
+                        "outline": "#747870",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c4c8be",
+                        "inverse-surface": "#2c322a",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#cee6cb",
+                        "tertiary-fixed": "#d7e7cd",
+                        "on-secondary-fixed": "#0c200f",
+                        "surface-container-highest": "#dee4d9",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#bbcbb2",
+                        "primary-fixed": "#d6e8cb",
+                        "surface-variant": "#dee4d9",
+                        "surface-container": "#eaf0e4",
+                        "surface": "#f5fbf0",
+                        "on-tertiary-container": "#2f3c2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "lg": "40px",
+                        "xs": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "display": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .mesh-bg {
+            background-image: 
+                radial-gradient(at 40% 20%, hsla(113, 23%, 84%, 1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(112, 17%, 62%, 1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(109, 31%, 90%, 1) 0px, transparent 50%);
+            background-color: #f5fbf0;
+            background-attachment: fixed;
+        }
+
+        /* Hide scrollbar for grid but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen mesh-bg flex flex-col font-body-md">
+<!-- TopNavBar (Suppressed due to linear/transactional exam flow, replacing with contextual sticky header) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-white/70 backdrop-blur-[35px] border-b border-white/40 shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
+<div class="flex items-center gap-sm">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Aspirants Q</span>
+<div class="hidden md:flex h-6 w-[1px] bg-outline-variant mx-sm"></div>
+<h1 class="hidden md:block font-label-md text-label-md text-on-surface-variant">Midterm: Organic Chemistry</h1>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-base glass-panel px-md py-sm rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-headline-md text-headline-md text-primary font-bold tracking-wider" id="exam-timer">45:12</span>
+</div>
+<button class="bg-error text-on-error font-label-md text-label-md px-md py-sm rounded-full hover:opacity-90 transition-opacity flex items-center gap-xs shadow-md">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span class="hidden md:inline">Submit Exam</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow pt-32 pb-24 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row gap-gutter max-w-[1600px] mx-auto w-full">
+<!-- Left/Center: Exam Canvas -->
+<section class="flex-grow flex flex-col gap-gutter">
+<!-- Question Container -->
+<div class="glass-panel rounded-lg p-margin-mobile md:p-margin-desktop flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-lg">
+<span class="font-label-md text-label-md text-primary bg-primary-container/20 px-sm py-xs rounded-full border border-primary/20">Question 14 of 50</span>
+<button class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+                        Flag for Review
+                    </button>
+</div>
+<div class="font-body-lg text-body-lg text-on-surface mb-xl">
+<p>Which functional group is characterized by a carbon-oxygen double bond?</p>
+</div>
+<!-- Options -->
+<div class="space-y-sm flex-grow">
+<label class="group flex items-center gap-md p-md rounded-lg border border-outline-variant/30 hover:bg-white/40 hover:border-primary/30 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative flex items-center justify-center w-6 h-6 rounded-full border-2 border-outline-variant group-hover:border-primary transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary scale-0 transition-transform"></div>
+</div>
+<input class="hidden" name="q14" type="radio" value="A"/>
+<span class="relative font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Hydroxyl group</span>
+</label>
+<label class="group flex items-center gap-md p-md rounded-lg border border-primary bg-primary-container/10 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="relative flex items-center justify-center w-6 h-6 rounded-full border-2 border-primary transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary scale-100 transition-transform"></div>
+</div>
+<input checked="" class="hidden" name="q14" type="radio" value="B"/>
+<span class="relative font-body-md text-body-md text-on-surface font-medium">Carbonyl group</span>
+</label>
+<label class="group flex items-center gap-md p-md rounded-lg border border-outline-variant/30 hover:bg-white/40 hover:border-primary/30 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative flex items-center justify-center w-6 h-6 rounded-full border-2 border-outline-variant group-hover:border-primary transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary scale-0 transition-transform"></div>
+</div>
+<input class="hidden" name="q14" type="radio" value="C"/>
+<span class="relative font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Amino group</span>
+</label>
+<label class="group flex items-center gap-md p-md rounded-lg border border-outline-variant/30 hover:bg-white/40 hover:border-primary/30 transition-all cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative flex items-center justify-center w-6 h-6 rounded-full border-2 border-outline-variant group-hover:border-primary transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary scale-0 transition-transform"></div>
+</div>
+<input class="hidden" name="q14" type="radio" value="D"/>
+<span class="relative font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Carboxyl group</span>
+</label>
+</div>
+</div>
+<!-- Navigation Controls -->
+<div class="flex justify-between items-center mt-auto">
+<button class="glass-panel px-lg py-sm rounded-full font-label-md text-label-md text-primary flex items-center gap-xs hover:bg-white/50 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+                    Previous
+                </button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md text-label-md flex items-center gap-xs hover:opacity-90 transition-opacity shadow-md">
+                    Next
+                    <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Right Side: Question Grid -->
+<aside class="w-full md:w-80 flex-shrink-0 flex flex-col gap-sm">
+<div class="glass-panel rounded-lg p-md flex flex-col h-full max-h-[calc(100vh-140px)]">
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-on-surface mb-md">Question Palette</h2>
+<!-- Legend -->
+<div class="flex flex-wrap gap-sm mb-md font-label-sm text-label-sm text-on-surface-variant border-b border-outline-variant/20 pb-md">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span>Answered</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full border border-outline"></div>
+<span>Not Visited</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-error-container border border-error"></div>
+<span>Flagged</span>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-5 gap-sm overflow-y-auto no-scrollbar pr-2 pb-2 content-start flex-grow">
+<!-- Script to generate grid items for brevity -->
+<script>
+                        for (let i = 1; i <= 50; i++) {
+                            let classes = "flex items-center justify-center w-10 h-10 rounded-full font-label-sm text-label-sm transition-transform hover:scale-105 cursor-pointer ";
+                            
+                            if (i === 14) {
+                                // Current
+                                classes += "bg-secondary text-on-secondary ring-2 ring-primary ring-offset-2 ring-offset-background font-bold shadow-md";
+                            } else if (i === 5 || i === 22) {
+                                // Flagged
+                                classes += "bg-error-container text-on-error-container border border-error/30";
+                            } else if (i < 14) {
+                                // Answered
+                                classes += "bg-primary-container text-on-primary-container border border-primary/20";
+                            } else {
+                                // Not visited
+                                classes += "bg-white/50 text-on-surface-variant border border-outline-variant/40 hover:border-primary/50";
+                            }
+                            
+                            document.write(`<div class="${classes}">${i}</div>`);
+                        }
+                    </script>
+</div>
+</div>
+</aside>
+</main>
+<script>
+        // Simple script to handle radio button visual state changes
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // Reset all
+                document.querySelectorAll('label').forEach(label => {
+                    label.classList.remove('border-primary', 'bg-primary-container/10');
+                    label.classList.add('border-outline-variant/30');
+                    
+                    const innerCircle = label.querySelector('.w-3.h-3');
+                    if(innerCircle) innerCircle.classList.replace('scale-100', 'scale-0');
+                    
+                    const outerCircle = label.querySelector('.w-6.h-6');
+                    if(outerCircle) outerCircle.classList.remove('border-primary');
+                });
+
+                // Set active
+                const activeLabel = e.target.closest('label');
+                activeLabel.classList.remove('border-outline-variant/30');
+                activeLabel.classList.add('border-primary', 'bg-primary-container/10');
+                
+                const activeInnerCircle = activeLabel.querySelector('.w-3.h-3');
+                if(activeInnerCircle) activeInnerCircle.classList.replace('scale-0', 'scale-100');
+                
+                const activeOuterCircle = activeLabel.querySelector('.w-6.h-6');
+                if(activeOuterCircle) activeOuterCircle.classList.add('border-primary');
+            });
+        });
+    </script>
+</body></html>

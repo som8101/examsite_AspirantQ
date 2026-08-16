@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aspirants Q - Admin Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#121f0f",
+                        "on-primary-fixed": "#111f0d",
+                        "text-deep": "#171D16",
+                        "tertiary-container": "#97a78f",
+                        "secondary": "#4e644f",
+                        "on-secondary-container": "#526853",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b5cdb3",
+                        "surface-container": "#eeeeee",
+                        "inverse-surface": "#2f3131",
+                        "on-primary-fixed-variant": "#3c4b36",
+                        "tertiary-fixed-dim": "#bbcbb2",
+                        "primary-fixed-dim": "#baccb0",
+                        "glass-white": "rgba(255, 255, 255, 0.45)",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#2e3c28",
+                        "outline-variant": "#c4c8be",
+                        "tertiary-fixed": "#d7e7cd",
+                        "outline": "#747870",
+                        "secondary-container": "#cee6cb",
+                        "surface-container-high": "#e8e8e8",
+                        "secondary-fixed": "#d1e9ce",
+                        "specular-highlight": "rgba(255, 255, 255, 0.20)",
+                        "error": "#ba1a1a",
+                        "on-background": "#1a1c1c",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#3d4b37",
+                        "on-tertiary-container": "#2f3c2a",
+                        "tertiary": "#54624e",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#444841",
+                        "on-surface": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-primary": "#baccb0",
+                        "primary-fixed": "#d6e8cb",
+                        "surface-bright": "#f9f9f9",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f1f1f1",
+                        "text-muted": "#444841",
+                        "on-primary": "#ffffff",
+                        "primary": "#53634c",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#374c38",
+                        "on-secondary-fixed": "#0c200f",
+                        "primary-container": "#96a78d",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-tint": "#53634c",
+                        "surface-dim": "#dadada"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "lg": "40px",
+                        "xs": "4px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Ambient Background Mesh Animation */
+        @keyframes float1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(2%, 4%) scale(1.05); } }
+        @keyframes float2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-3%, -2%) scale(1.1); } }
+        @keyframes float3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(4%, -3%) scale(0.95); } }
+        .mesh-blob-1 { animation: float1 18s ease-in-out infinite; }
+        .mesh-blob-2 { animation: float2 24s ease-in-out infinite; }
+        .mesh-blob-3 { animation: float3 20s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-background text-text-deep min-h-screen overflow-x-hidden font-body-md antialiased relative">
+<!-- Ambient Mesh Gradient Background -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10 bg-background">
+<div class="mesh-blob-1 absolute top-[-10%] left-[-5%] w-[60vw] h-[60vw] rounded-full bg-primary-container blur-[120px] opacity-20 mix-blend-multiply"></div>
+<div class="mesh-blob-2 absolute bottom-[-15%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-secondary-container blur-[150px] opacity-30 mix-blend-multiply"></div>
+<div class="mesh-blob-3 absolute top-[20%] right-[15%] w-[40vw] h-[40vw] rounded-full bg-tertiary-container blur-[100px] opacity-20 mix-blend-multiply"></div>
+</div>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col p-6 gap-4 bg-glass-white/45 backdrop-blur-xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.08)] fixed left-6 top-6 bottom-6 w-72 rounded-lg z-50">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-white/50 border border-white/30 flex items-center justify-center shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A minimalist logo icon for Aspirants Q featuring a stylized 'Q' formed by abstract geometric shapes, rendered in soft, translucent materials and gentle lighting. The overall mood is modern and educational." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQuoJc9KRSh7BerIoKccla_Z5YOeCm8Ps7D4Qy2OcFvDreo73oaZvoGkdGK6NWlJdcFoKUufb1ql1tBosw64_8_qd2SL78ewayiNq_nAB6whx6ylREXFZPK1GqTb0C_kYVgIqu1mqhFL8ngnEetVaclGjWHsWEd9wkido7nAPp8myfdxpUqxvjyTZ1glTgSq0jHwUwtpeDTil9nyVtb963WCRejNSorcc6e-6qNAyzubCk18KYuCtAEQ"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-text-deep">Aspirants Q</h1>
+<p class="font-label-sm text-label-sm text-text-muted">Admin Portal</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<!-- Active Tab -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-fixed text-on-primary-fixed-variant rounded-full font-bold hover:backdrop-blur-2xl transition-all duration-300 scale-[0.97]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<!-- Inactive Tabs -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full hover:backdrop-blur-2xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md text-label-md">Exams</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full hover:backdrop-blur-2xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Students</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full hover:backdrop-blur-2xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Results</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full hover:backdrop-blur-2xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-4 border-t border-white/10">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-full flex items-center justify-center gap-2 hover:bg-primary-container/80 transition-colors shadow-sm border border-white/20">
+<span class="material-symbols-outlined">add</span>
+                New Exam
+            </button>
+</div>
+</nav>
+<!-- TopNavBar (Desktop) -->
+<header class="hidden md:flex justify-between items-center px-8 py-4 bg-glass-white/45 backdrop-blur-xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.08)] fixed top-6 right-6 left-[340px] rounded-lg z-40">
+<div class="flex items-center">
+<!-- Search positioned logically on left -->
+<div class="relative w-64 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="w-full bg-white/30 border border-white/20 text-text-deep placeholder:text-text-muted rounded-full pl-10 pr-4 py-2 font-body-md text-body-md focus:outline-none focus:border-white/50 focus:bg-white/50 transition-all shadow-inner" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-text-muted hover:bg-white/20 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-text-muted hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-px h-6 bg-white/30 mx-2"></div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/40 shadow-sm cursor-pointer hover:opacity-80 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator, subtly smiling, against a bright, airy office background with natural lighting, embodying a trustworthy and welcoming demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9rcp6VO6gTqp2KIJRlNTKmKG-Oc2q8F9OMCIH52AfQLALkM5BG1EFYOWpS5n_ySw4uR6pBxsjciLFq5-5lvinMga25Z_6dKvpuAanPrIyzsQ67-HnBCmp_PDpVp_77J3o44WaT1UKBEFhyaoVjspUU-FhaykxIRyvQlQAobKSOKFNkiE6c89cHGZ0L1RxbTq2VC1WRSAD5J1wg5_ryKn7GR3CdE47lj4oRun4WoHt_EyPGjcjUT6UVg"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-[340px] pt-32 pb-12 px-6 md:px-8 max-w-7xl mx-auto">
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-text-deep">Overview</h2>
+<p class="font-body-md text-body-md text-text-muted mt-1">Monitor platform performance and recent activity.</p>
+</div>
+<!-- Top Section: KPI Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- Card 1 -->
+<div class="bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-md text-label-md text-text-muted">Total Active Exams</span>
+<div class="w-10 h-10 rounded-full bg-primary-fixed/50 border border-white/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">assignment</span>
+</div>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg text-text-deep">42</h3>
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 12% vs last month
+                    </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-md text-label-md text-text-muted">Total Students</span>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed/50 border border-white/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">group</span>
+</div>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg text-text-deep">1,204</h3>
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 45 new this week
+                    </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-md text-label-md text-text-muted">Recent Submissions</span>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/50 border border-white/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">inbox</span>
+</div>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg text-text-deep">385</h3>
+<p class="font-label-sm text-label-sm text-text-muted flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> In the last 24h
+                    </p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] transition-shadow duration-300">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-md text-label-md text-text-muted">Avg. Platform Score</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-high/50 border border-white/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-text-deep">military_tech</span>
+</div>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg text-text-deep">78%</h3>
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 2.4% vs last month
+                    </p>
+</div>
+</div>
+</section>
+<!-- Middle Section: Chart Placeholder -->
+<section class="mb-8">
+<div class="bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)] h-96 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-text-deep">Exam Attempts</h3>
+<p class="font-label-sm text-label-sm text-text-muted">Last 7 days</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border border-white/30 bg-white/20 text-text-deep font-label-md text-label-md hover:bg-white/40 transition-colors">
+                        This Week <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+<!-- Mock Chart Area (Visual representation using flex bars) -->
+<div class="flex-grow flex items-end gap-2 md:gap-6 pt-4 border-b border-white/10 pb-2 px-2 relative">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-2">
+<div class="w-full h-px bg-white/10"></div>
+<div class="w-full h-px bg-white/10"></div>
+<div class="w-full h-px bg-white/10"></div>
+<div class="w-full h-px bg-white/10"></div>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-primary-container/40 border border-white/20 rounded-t-lg h-[30%] group-hover:bg-primary-container/60 transition-colors relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-inverse text-inverse-on-surface font-label-sm px-2 py-1 rounded transition-opacity">120</div>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">Mon</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-primary-container/40 border border-white/20 rounded-t-lg h-[50%] group-hover:bg-primary-container/60 transition-colors relative"></div>
+<span class="font-label-sm text-label-sm text-text-muted">Tue</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-primary-container border border-white/40 rounded-t-lg h-[80%] shadow-[0_0_15px_rgba(150,167,141,0.3)] transition-colors relative"></div>
+<span class="font-label-sm text-label-sm text-text-deep font-bold">Wed</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-primary-container/40 border border-white/20 rounded-t-lg h-[40%] group-hover:bg-primary-container/60 transition-colors relative"></div>
+<span class="font-label-sm text-label-sm text-text-muted">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-primary-container/40 border border-white/20 rounded-t-lg h-[65%] group-hover:bg-primary-container/60 transition-colors relative"></div>
+<span class="font-label-sm text-label-sm text-text-muted">Fri</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-secondary-container/40 border border-white/20 rounded-t-lg h-[20%] group-hover:bg-secondary-container/60 transition-colors relative"></div>
+<span class="font-label-sm text-label-sm text-text-muted">Sat</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 z-10 group">
+<div class="w-full max-w-[40px] bg-secondary-container/40 border border-white/20 rounded-t-lg h-[15%] group-hover:bg-secondary-container/60 transition-colors relative"></div>
+<span class="font-label-sm text-label-sm text-text-muted">Sun</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Split View -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Recent Activity (Left, takes 2 columns on large screens) -->
+<div class="lg:col-span-2 bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+<h3 class="font-headline-md text-headline-md text-text-deep">Recent Activity</h3>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="space-y-4">
+<!-- Activity Item 1 -->
+<div class="flex items-start gap-4 p-3 hover:bg-white/20 rounded-lg transition-colors border border-transparent hover:border-white/10">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed-variant text-[20px]">assignment_turned_in</span>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-text-deep"><strong>Advanced Physics Midterm</strong> results published.</p>
+<p class="font-label-sm text-label-sm text-text-muted mt-1">10 mins ago • 145 students notified</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex items-start gap-4 p-3 hover:bg-white/20 rounded-lg transition-colors border border-transparent hover:border-white/10">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/30 shrink-0">
+<img class="w-full h-full object-cover" data-alt="A small avatar showing a bright, friendly student character rendered in a flat 2D vector style, set against a solid pale background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtxkWlvUT0Sh9VHgpNMHY3e6j2h5H0Eue5u-CkuPjklNO0SnPS2K8Bym-oI5-0KK5GimAxNQ9oP7NTB8HjLsiCXQ9-7adrRuXZNA5ud2ivSrMsv40kWNSRcLmFbL3dEKty90r1Oq3FgQ2JVrDqq2Mz_lIh4JrLXOxd2yB-Rop79g1OM4rYAeUx4nC8CocT5uJGTlxk1d04QolJXwC710gUoRlLETI7TxXj-3QoiW6htaXsIMe6rV52Xg"/>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-text-deep"><strong>Sarah Jenkins</strong> requested an extension for History Essay.</p>
+<p class="font-label-sm text-label-sm text-text-muted mt-1">45 mins ago • Pending Approval</p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex items-start gap-4 p-3 hover:bg-white/20 rounded-lg transition-colors border border-transparent hover:border-white/10">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant text-[20px]">warning</span>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-text-deep">System flagged unusual activity during <strong>Calculus Quiz 3</strong>.</p>
+<p class="font-label-sm text-label-sm text-text-muted mt-1">2 hours ago • Automated Review</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions (Right, takes 1 column) -->
+<div class="bg-glass-white/45 backdrop-blur-xl border border-white/20 rounded-xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.04)] flex flex-col">
+<div class="mb-6 border-b border-white/10 pb-4">
+<h3 class="font-headline-md text-headline-md text-text-deep">Quick Actions</h3>
+</div>
+<div class="flex flex-col gap-4 flex-grow justify-center">
+<!-- Glass Button Action 1 -->
+<button class="w-full bg-white/30 border border-white/30 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/50 hover:shadow-sm transition-all group">
+<div class="w-12 h-12 rounded-full bg-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-[28px]">key</span>
+</div>
+<span class="font-label-md text-label-md text-text-deep">Generate Access Code</span>
+</button>
+<!-- Glass Button Action 2 -->
+<button class="w-full bg-white/30 border border-white/30 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/50 hover:shadow-sm transition-all group">
+<div class="w-12 h-12 rounded-full bg-white/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-[28px]">upload_file</span>
+</div>
+<span class="font-label-md text-label-md text-text-deep">Upload New Exam</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exam Settings &amp; Access Control - Aspirants Q</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#121f0f",
+                      "on-primary-fixed": "#111f0d",
+                      "text-deep": "#171D16",
+                      "tertiary-container": "#97a78f",
+                      "secondary": "#4e644f",
+                      "on-secondary-container": "#526853",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#b5cdb3",
+                      "surface-container": "#eeeeee",
+                      "inverse-surface": "#2f3131",
+                      "on-primary-fixed-variant": "#3c4b36",
+                      "tertiary-fixed-dim": "#bbcbb2",
+                      "primary-fixed-dim": "#baccb0",
+                      "glass-white": "rgba(255, 255, 255, 0.45)",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#2e3c28",
+                      "outline-variant": "#c4c8be",
+                      "tertiary-fixed": "#d7e7cd",
+                      "outline": "#747870",
+                      "secondary-container": "#cee6cb",
+                      "surface-container-high": "#e8e8e8",
+                      "secondary-fixed": "#d1e9ce",
+                      "specular-highlight": "rgba(255, 255, 255, 0.20)",
+                      "error": "#ba1a1a",
+                      "on-background": "#1a1c1c",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-tertiary-fixed-variant": "#3d4b37",
+                      "on-tertiary-container": "#2f3c2a",
+                      "tertiary": "#54624e",
+                      "surface": "#f9f9f9",
+                      "on-surface-variant": "#444841",
+                      "on-surface": "#1a1c1c",
+                      "background": "#f9f9f9",
+                      "surface-variant": "#e2e2e2",
+                      "inverse-primary": "#baccb0",
+                      "primary-fixed": "#d6e8cb",
+                      "surface-bright": "#f9f9f9",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f1f1f1",
+                      "text-muted": "#444841",
+                      "on-primary": "#ffffff",
+                      "primary": "#53634c",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#374c38",
+                      "on-secondary-fixed": "#0c200f",
+                      "primary-container": "#96a78d",
+                      "surface-container-low": "#f3f3f3",
+                      "surface-tint": "#53634c",
+                      "surface-dim": "#dadada"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "md": "24px",
+                      "sm": "12px",
+                      "margin-mobile": "16px",
+                      "base": "8px",
+                      "xl": "64px",
+                      "lg": "40px",
+                      "xs": "4px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-glass-white backdrop-blur-xl border border-specular-highlight shadow-[0_40px_80px_rgba(0,0,0,0.08)];
+            }
+            .glass-button {
+                @apply bg-glass-white backdrop-blur-xl border border-specular-highlight text-primary transition-all duration-300 hover:bg-white/60 hover:shadow-sm;
+            }
+            .glass-input {
+                @apply bg-glass-white backdrop-blur-md border border-specular-highlight focus:border-white/50 focus:ring-0 transition-all duration-300;
+            }
+            .toggle-track {
+                @apply w-12 h-6 bg-surface-variant rounded-full relative transition-colors duration-300 cursor-pointer border border-specular-highlight;
+            }
+            .toggle-thumb {
+                @apply absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 shadow-sm;
+            }
+            .toggle-input:checked + .toggle-track {
+                @apply bg-primary;
+            }
+            .toggle-input:checked + .toggle-track .toggle-thumb {
+                @apply translate-x-6;
+            }
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased overflow-x-hidden">
+<!-- Ambient Background Orbs -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-fixed blur-[120px] opacity-40"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-fixed blur-[150px] opacity-30"></div>
+<div class="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-tertiary-fixed blur-[100px] opacity-20"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="hidden md:flex justify-between items-center px-8 py-4 bg-glass-white/45 backdrop-blur-xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.08)] fixed top-6 right-6 left-[340px] rounded-lg z-40 transition-colors">
+<div class="flex items-center gap-4">
+<!-- Search Bar placeholder -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="glass-input w-full pl-10 pr-4 py-2 rounded-full font-label-md text-label-md text-text-deep placeholder:text-text-muted" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-text-muted hover:bg-white/20 transition-colors p-2 rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-text-muted hover:bg-white/20 transition-colors p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-white/50 border border-specular-highlight overflow-hidden shadow-sm flex items-center justify-center">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator in a bright, modern office setting, with a warm and approachable expression. The lighting is soft and flattering, creating a high-trust, professional aesthetic suitable for an admin portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsbuZ6djZDU6PqKtqCLSZYxoeorfXkS8EgUIz0dzMQuIZrcLqH49YFSKIQjM_jzpCxtgqa4CixHI7ltLCP2m62DK3HjHEMFfzH0XDjemEWKMWR70h9CXapb2Hi9KwTdRHUjlcDbpR38dRv90W5PXQLDsAFN8xsSFCAYGjnjBmVPOVQORaqjtM0V8pwQNn5jRE2YW1inIFh8Lua6yMhf763FzIavB7zW5qnjRGlLOCVpXNpat_4vuNsBQ"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col p-6 gap-4 bg-glass-white/45 backdrop-blur-xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.08)] fixed left-6 top-6 bottom-6 w-72 rounded-lg z-50">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-text-deep tracking-tight">Aspirants Q</h1>
+<p class="font-label-sm text-label-sm text-text-muted">Admin Portal</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-full font-label-md text-label-md shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined">add</span>
+            New Exam
+        </button>
+<nav class="flex-1 flex flex-col gap-2 font-body-md text-body-md">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full transition-all duration-300 hover:backdrop-blur-2xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Inactive (but contextual active for "Settings" page) -->
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full transition-all duration-300 hover:backdrop-blur-2xl" href="#">
+<span class="material-symbols-outlined">quiz</span>
+                Exams
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full transition-all duration-300 hover:backdrop-blur-2xl" href="#">
+<span class="material-symbols-outlined">group</span>
+                Students
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-text-muted hover:bg-white/10 rounded-full transition-all duration-300 hover:backdrop-blur-2xl" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Results
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-fixed text-on-primary-fixed-variant rounded-full font-bold scale-[0.97] transition-transform shadow-inner" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/10 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/30">
+<img alt="Admin User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a school administrator in a bright, modern office setting, with a warm and approachable expression. The lighting is soft and flattering, creating a high-trust, professional aesthetic suitable for an admin portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8tVcFTgvCePrVbkOmC7IozDiEfn65IezN2MTORjAbl-Cs_KGINTyVO38CSpyQF7zzlq0fUYKOkr1eHtHg4IMEWABK0Q55JSbVCCjfKB_mxqRhdb2ycdp1PacMYBULf7nVJwhnG71ccxB3_uGRWKYKpN0gm-b4QysSSowx1vVLkK5zMtKX-adi3gVczn-b5GCdpsZQU2DjQpabzmIC8kJcOjUToFAwULmQFjEJ7WpAY-e77VkNUbprKQ"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-deep">Admin User</p>
+<p class="font-label-sm text-label-sm text-text-muted">Administrator</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-[340px] pt-32 pb-24 md:pb-8 px-6 md:px-8 max-w-7xl mx-auto">
+<!-- Page Header -->
+<header class="mb-10">
+<div class="flex items-center gap-2 text-text-muted font-label-sm text-label-sm mb-2">
+<a class="hover:text-primary transition-colors" href="#">Exams</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Midterm Biology 101</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-text-deep">Settings</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-text-deep mb-2">Exam Configuration</h2>
+<p class="font-body-lg text-body-lg text-text-muted max-w-2xl">Manage test parameters, security settings, and generate unique access codes for students.</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Left Column: Settings Panel -->
+<div class="xl:col-span-1 flex flex-col gap-8">
+<!-- General Settings Card -->
+<section class="glass-panel rounded-xl p-8">
+<h3 class="font-headline-md text-headline-md text-text-deep mb-6 flex items-center gap-2 pb-4 border-b border-white/10">
+<span class="material-symbols-outlined text-primary">tune</span>
+                        Test Parameters
+                    </h3>
+<div class="space-y-6">
+<!-- Setting: Strict Timer -->
+<div class="flex items-center justify-between group">
+<div>
+<label class="font-label-md text-label-md text-text-deep block mb-1 group-hover:text-primary transition-colors cursor-pointer" for="toggle-timer">Strict Timer</label>
+<p class="font-label-sm text-label-sm text-text-muted">Auto-submit when time expires.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer toggle-input" id="toggle-timer" type="checkbox"/>
+<div class="toggle-track">
+<div class="toggle-thumb"></div>
+</div>
+</label>
+</div>
+<!-- Setting: Shuffle Questions -->
+<div class="flex items-center justify-between group">
+<div>
+<label class="font-label-md text-label-md text-text-deep block mb-1 group-hover:text-primary transition-colors cursor-pointer" for="toggle-shuffle">Shuffle Questions</label>
+<p class="font-label-sm text-label-sm text-text-muted">Randomize order for each student.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer toggle-input" id="toggle-shuffle" type="checkbox"/>
+<div class="toggle-track">
+<div class="toggle-thumb"></div>
+</div>
+</label>
+</div>
+<!-- Setting: Show Results -->
+<div class="flex items-center justify-between group">
+<div>
+<label class="font-label-md text-label-md text-text-deep block mb-1 group-hover:text-primary transition-colors cursor-pointer" for="toggle-results">Show Results</label>
+<p class="font-label-sm text-label-sm text-text-muted">Display score immediately after completion.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer toggle-input" id="toggle-results" type="checkbox"/>
+<div class="toggle-track">
+<div class="toggle-thumb"></div>
+</div>
+</label>
+</div>
+<!-- Duration Input -->
+<div class="pt-4 border-t border-white/10">
+<label class="font-label-md text-label-md text-text-deep block mb-2">Duration (Minutes)</label>
+<div class="relative">
+<input class="glass-input w-full px-4 py-3 rounded-lg font-body-md text-body-md text-text-deep w-full focus:outline-none" type="number" value="60"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none">schedule</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Notice Card -->
+<div class="glass-panel rounded-xl p-6 bg-secondary-fixed/30 border-secondary-fixed-dim/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">shield</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-secondary-container font-bold mb-1">High Security Mode</h4>
+<p class="font-label-sm text-label-sm text-on-secondary-container/80 leading-relaxed">This exam is configured for strict access. Students must use a unique code generated from this panel to enter the assessment.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Access Control Panel -->
+<div class="xl:col-span-2 flex flex-col gap-6">
+<section class="glass-panel rounded-xl p-8 flex-1 flex flex-col">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 pb-4 border-b border-white/10">
+<div>
+<h3 class="font-headline-md text-headline-md text-text-deep flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary">key</span>
+                                Access Control
+                            </h3>
+<p class="font-body-md text-body-md text-text-muted">Manage and monitor unique access codes.</p>
+</div>
+<div class="flex gap-3">
+<div class="relative w-24">
+<input aria-label="Number of codes to generate" class="glass-input w-full px-3 py-2 rounded-lg font-body-md text-body-md text-text-deep text-center focus:outline-none" max="100" min="1" type="number" value="10"/>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md transition-colors shadow-sm flex items-center gap-2 whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                                Generate Codes
+                            </button>
+</div>
+</div>
+<!-- Filter/Search Bar -->
+<div class="flex flex-col sm:flex-row gap-4 mb-6">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="glass-input w-full pl-10 pr-4 py-2 rounded-lg font-body-md text-body-md text-text-deep focus:outline-none" placeholder="Search codes..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="glass-button px-4 py-2 rounded-lg font-label-md text-label-md bg-white/40">All</button>
+<button class="glass-button px-4 py-2 rounded-lg font-label-md text-label-md text-text-muted">Unused</button>
+<button class="glass-button px-4 py-2 rounded-lg font-label-md text-label-md text-text-muted">Redeemed</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto border border-white/20 rounded-lg bg-white/10 backdrop-blur-sm flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-white/20 bg-white/20">
+<th class="p-4 font-label-md text-label-md text-text-deep">Code</th>
+<th class="p-4 font-label-md text-label-md text-text-deep">Status</th>
+<th class="p-4 font-label-md text-label-md text-text-deep">Assigned To</th>
+<th class="p-4 font-label-md text-label-md text-text-deep text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-text-deep divide-y divide-white/10">
+<!-- Row 1: Unused -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="p-4 font-mono tracking-wider">BIO-X7F2-9K</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed border border-tertiary-fixed-dim/50">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                            Unused
+                                        </span>
+</td>
+<td class="p-4 text-text-muted italic">--</td>
+<td class="p-4 text-right">
+<button class="text-text-muted hover:text-primary transition-colors p-1" title="Copy Code">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-text-muted hover:text-error transition-colors p-1 ml-2" title="Revoke">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Redeemed -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="p-4 font-mono tracking-wider text-text-muted line-through decoration-white/30">BIO-M4A1-2B</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-surface-variant text-text-muted border border-white/20">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                            Redeemed
+                                        </span>
+</td>
+<td class="p-4">Sarah Jenkins</td>
+<td class="p-4 text-right">
+<button class="text-text-muted hover:text-primary transition-colors p-1" title="View Student">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Unused -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="p-4 font-mono tracking-wider">BIO-P9L0-5W</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed border border-tertiary-fixed-dim/50">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                            Unused
+                                        </span>
+</td>
+<td class="p-4 text-text-muted italic">--</td>
+<td class="p-4 text-right">
+<button class="text-text-muted hover:text-primary transition-colors p-1" title="Copy Code">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-text-muted hover:text-error transition-colors p-1 ml-2" title="Revoke">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Redeemed -->
+<tr class="hover:bg-white/20 transition-colors">
+<td class="p-4 font-mono tracking-wider text-text-muted line-through decoration-white/30">BIO-C3V8-1N</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-surface-variant text-text-muted border border-white/20">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                            Redeemed
+                                        </span>
+</td>
+<td class="p-4">Michael Chang</td>
+<td class="p-4 text-right">
+<button class="text-text-muted hover:text-primary transition-colors p-1" title="View Student">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Unused -->
+<tr class="hover:bg-white/20 transition-colors border-b-transparent">
+<td class="p-4 font-mono tracking-wider">BIO-Q2E4-7T</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-tertiary-fixed text-on-tertiary-fixed border border-tertiary-fixed-dim/50">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                            Unused
+                                        </span>
+</td>
+<td class="p-4 text-text-muted italic">--</td>
+<td class="p-4 text-right">
+<button class="text-text-muted hover:text-primary transition-colors p-1" title="Copy Code">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="text-text-muted hover:text-error transition-colors p-1 ml-2" title="Revoke">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination (Static for demo) -->
+<div class="mt-4 flex items-center justify-between text-text-muted font-label-sm text-label-sm">
+<span>Showing 1-5 of 10 codes</span>
+<div class="flex gap-1">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">chevron_left</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Action Bar (Sticky Bottom Desktop) -->
+<div class="fixed bottom-8 right-8 z-40 hidden md:flex gap-4">
+<button class="glass-button px-6 py-3 rounded-full font-label-md text-label-md font-bold shadow-lg">
+                Cancel
+             </button>
+<button class="bg-primary hover:bg-primary/90 text-on-primary px-8 py-3 rounded-full font-label-md text-label-md font-bold shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">save</span>
+                Save Settings
+             </button>
+</div>
+</main>
+</body></html>
