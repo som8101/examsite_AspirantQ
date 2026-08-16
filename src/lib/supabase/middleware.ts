@@ -35,22 +35,35 @@ export async function updateSession(request: NextRequest) {
   
   if (!user) {
     if (pathname.startsWith('/student') || pathname.startsWith('/admin')) {
-      return NextResponse.redirect(new URL('/login', request.url));
+      const redirectResponse = NextResponse.redirect(new URL('/login', request.url));
+      supabaseResponse.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie.name, cookie.value);
+      });
+      return redirectResponse;
     }
   } else {
+    let redirectUrl: URL | null = null;
+    const role = user.user_metadata?.role || 'student';
+
     // If user is logged in and trying to access root or login, redirect to dashboard based on role
     if (pathname === '/login' || pathname === '/') {
-       const role = user.user_metadata?.role || 'student';
-       return NextResponse.redirect(new URL(`/${role}/dashboard`, request.url));
+       redirectUrl = new URL(`/${role}/dashboard`, request.url);
     }
-    
     // Basic route protection based on role metadata
-    const role = user.user_metadata?.role || 'student';
-    if (pathname.startsWith('/admin') && role !== 'admin') {
-       return NextResponse.redirect(new URL('/student/dashboard', request.url));
+    else if (pathname.startsWith('/admin') && role !== 'admin') {
+       redirectUrl = new URL('/student/dashboard', request.url);
     }
-    if (pathname.startsWith('/student') && role === 'admin') {
-       return NextResponse.redirect(new URL('/admin/dashboard', request.url));
+    else if (pathname.startsWith('/student') && role === 'admin') {
+       redirectUrl = new URL('/admin/dashboard', request.url);
+    }
+
+    if (redirectUrl) {
+      const redirectResponse = NextResponse.redirect(redirectUrl);
+      // Preserve any cookies that were updated by Supabase (e.g., token refresh)
+      supabaseResponse.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie.name, cookie.value);
+      });
+      return redirectResponse;
     }
   }
 
