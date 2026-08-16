@@ -26,12 +26,6 @@ export default async function AdminDashboard() {
           <h1 className="text-3xl font-bold tracking-tight text-primary">Overview</h1>
           <p className="text-muted-foreground mt-1">Monitor platform activity and manage recent exams.</p>
         </div>
-        <Link href="/admin/exams/create">
-          <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg">
-            <BookOpen className="h-4 w-4 mr-2" />
-            Create AI Exam
-          </Button>
-        </Link>
       </header>
 
       {/* Quick Stats Bento Grid */}
