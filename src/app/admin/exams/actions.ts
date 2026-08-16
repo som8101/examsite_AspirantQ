@@ -156,3 +156,35 @@ export async function deleteQuestionAction(questionId: string, examId: string) {
     return { message: error.message, error: true };
   }
 }
+
+export async function duplicateExamAction(examId: string) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { message: 'Unauthorized', error: true };
+
+    const { data: original, error: fetchErr } = await supabase.from('exams').select('*').eq('id', examId).single();
+    if (fetchErr || !original) return { message: 'Exam not found', error: true };
+    
+    const { id, created_at, updated_at, ...rest } = original;
+    const slug = original.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-copy-' + Date.now();
+    
+    const { data, error } = await supabase.from('exams').insert({
+       ...rest,
+       title: `${original.title} (Copy)`,
+       slug,
+       status: 'draft',
+       created_by: user.id
+    }).select().single();
+    
+    if (error) return { message: error.message, error: true };
+    
+    // redirect to the newly duplicated exam
+    redirect(`/admin/exams/${data.id}`);
+  } catch (error: any) {
+    if (error.message === 'NEXT_REDIRECT') {
+       throw error;
+    }
+    return { message: error.message, error: true };
+  }
+}
