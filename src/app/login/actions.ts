@@ -56,6 +56,11 @@ export async function signup(formData: FormData) {
     redirect('/login?error=Missing fields')
   }
 
+  // Security Fix: Prevent anyone from signing up as an Admin
+  if (role === 'admin') {
+    redirect('/login?error=Admin registration is restricted. Please contact system administrator.')
+  }
+
   const { error, data: authData } = await supabase.auth.signUp({
     email,
     password,

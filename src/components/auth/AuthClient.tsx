@@ -52,7 +52,10 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
             </div>
            )}
 
-            <Tabs value={role} onValueChange={(v) => setRole(v as 'student'|'admin')} className="w-full mb-6">
+            <Tabs value={role} onValueChange={(v) => {
+              setRole(v as 'student'|'admin');
+              if (v === 'admin' && view === 'signup') setView('login');
+            }} className="w-full mb-6">
               <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/50 rounded-lg h-12 border border-border">
                  <TabsTrigger value="student" className="rounded-md font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm text-sm transition-all">Student Portal</TabsTrigger>
                  <TabsTrigger value="admin" className="rounded-md font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm text-sm transition-all">Admin Portal</TabsTrigger>
@@ -75,9 +78,11 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
                <SubmitButton loadingText="Logging in..." className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300">
                   Log In as {role === 'admin' ? 'Admin' : 'Student'}
                </SubmitButton>
-               <p className="text-center text-sm text-foreground/70 mt-4">
-                 Don't have an account? <button type="button" onClick={() => setView('signup')} className="text-primary font-medium hover:underline">Sign up</button>
-               </p>
+               {role === 'student' && (
+                 <p className="text-center text-sm text-foreground/70 mt-4">
+                   Don't have an account? <button type="button" onClick={() => setView('signup')} className="text-primary font-medium hover:underline">Sign up</button>
+                 </p>
+               )}
              </form>
            )}
 
