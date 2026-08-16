@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { SubmitButton } from '@/components/ui/submit-button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -71,9 +72,9 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
                   </div>
                   <Input id="password" name="password" type="password" required placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} className="h-11 rounded-lg bg-background/50 border-border" />
                </div>
-               <Button type="submit" className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300">
+               <SubmitButton loadingText="Logging in..." className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300">
                   Log In as {role === 'admin' ? 'Admin' : 'Student'}
-               </Button>
+               </SubmitButton>
                <p className="text-center text-sm text-foreground/70 mt-4">
                  Don't have an account? <button type="button" onClick={() => setView('signup')} className="text-primary font-medium hover:underline">Sign up</button>
                </p>
@@ -131,9 +132,9 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
                   </div>
                </div>
 
-               <Button type="submit" disabled={!isPasswordValid} className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300 mt-2">
+               <SubmitButton loadingText="Creating Account..." disabled={!isPasswordValid} className="w-full h-11 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary hover:to-primary text-white shadow-lg shadow-primary/20 rounded-xl transition-all duration-300 mt-2">
                   Create {role === 'admin' ? 'Admin' : 'Student'} Account
-               </Button>
+               </SubmitButton>
                <p className="text-center text-sm text-foreground/70 mt-4">
                  Already have an account? <button type="button" onClick={() => setView('login')} className="text-primary font-medium hover:underline">Log in</button>
                </p>
@@ -152,9 +153,9 @@ export function AuthClient({ error, message }: { error?: string, message?: strin
                   <Input id="resetEmail" name="email" type="email" required placeholder="you@example.com" className="h-11 rounded-lg" />
                </div>
 
-               <Button type="submit" className="w-full h-12 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-base shadow-md shadow-indigo-200">
-                  Send Reset Link
-               </Button>
+               <SubmitButton loadingText="Sending Link..." className="w-full h-11 text-base bg-primary hover:bg-primary/90 text-white rounded-xl shadow-lg transition-all mt-4">
+                 Send Reset Link
+               </SubmitButton>
                <p className="text-center text-sm text-slate-500 mt-4">
                  Remembered it? <button type="button" onClick={() => setView('login')} className="text-indigo-600 font-medium hover:underline">Back to login</button>
                </p>
