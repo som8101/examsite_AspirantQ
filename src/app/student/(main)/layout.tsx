@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { signout } from '@/app/login/actions';
+import { MobileNav } from '@/components/student/MobileNav';
 
 export default async function StudentLayout({ children }: { children: ReactNode }) {
   const supabase = await createClient();
@@ -56,10 +57,13 @@ export default async function StudentLayout({ children }: { children: ReactNode 
 
       <main className="flex-1 overflow-auto relative z-0">
         <div className="md:hidden glass-panel rounded-none border-t-0 border-x-0 h-16 flex items-center px-4 justify-between sticky top-0 z-20">
-           <h1 className="text-lg font-bold text-primary flex items-center gap-2">
-            <BookOpen className="h-5 w-5" />
-            Aspirants Q
-          </h1>
+          <div className="flex items-center gap-2">
+            <MobileNav signoutAction={signout} />
+            <h1 className="text-lg font-bold text-primary flex items-center gap-2">
+              <BookOpen className="h-5 w-5" />
+              Aspirants Q
+            </h1>
+          </div>
           <form action={signout}>
             <Button type="submit" variant="ghost" size="icon" className="text-destructive hover:bg-destructive/10">
               <LogOut className="h-4 w-4" />

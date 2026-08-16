@@ -7,13 +7,17 @@ import { Button } from '@/components/ui/button';
 export default async function AdminDashboard() {
   const supabase = await createClient();
 
-  // Basic stats
-  const { count: examCount } = await supabase.from('exams').select('*', { count: 'exact', head: true });
-  const { count: studentCount } = await supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('role', 'student');
-  const { count: attemptCount } = await supabase.from('exam_attempts').select('*', { count: 'exact', head: true });
-  
-  // Recent exams
-  const { data: recentExams } = await supabase.from('exams').select('*, exam_attempts(id)').order('created_at', { ascending: false }).limit(5);
+  const [
+    { count: examCount },
+    { count: studentCount },
+    { count: attemptCount },
+    { data: recentExams }
+  ] = await Promise.all([
+    supabase.from('exams').select('*', { count: 'exact', head: true }),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('role', 'student'),
+    supabase.from('exam_attempts').select('*', { count: 'exact', head: true }),
+    supabase.from('exams').select('*, exam_attempts(id)').order('created_at', { ascending: false }).limit(5)
+  ]);
 
   return (
     <div className="space-y-8 max-w-[1400px] mx-auto pb-12">

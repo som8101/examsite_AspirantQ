@@ -188,3 +188,78 @@ export async function duplicateExamAction(examId: string) {
     return { message: error.message, error: true };
   }
 }
+
+export async function updateExamSettingsAction(examId: string, settings: any) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { message: 'Unauthorized', error: true };
+
+    const { error } = await supabase.from('exams').update({
+      strict_timer: settings.strict_timer,
+      shuffle_questions: settings.shuffle_questions,
+      immediate_results: settings.immediate_results,
+      proctoring_mode: settings.proctoring_mode,
+    }).eq('id', examId);
+
+    if (error) return { message: error.message, error: true };
+    
+    revalidatePath(`/admin/exams/${examId}/settings`);
+    return { success: true };
+  } catch (error: any) {
+    return { message: error.message, error: true };
+  }
+}
+
+export async function generateAccessCodesAction(examId: string, count: number = 5) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { message: 'Unauthorized', error: true };
+
+    const newCodes = Array.from({ length: count }).map(() => ({
+      exam_id: examId,
+      code: `EXM-${Math.random().toString(36).substring(2, 6).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`,
+      status: 'unused'
+    }));
+
+    const { error } = await supabase.from('exam_access_codes').insert(newCodes);
+
+    if (error) return { message: error.message, error: true };
+    
+    revalidatePath(`/admin/exams/${examId}/settings`);
+    return { success: true };
+  } catch (error: any) {
+    return { message: error.message, error: true };
+  }
+}
+
+export async function getAttemptDetailsAction(attemptId: string) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { message: 'Unauthorized', error: true };
+
+    const { data: attemptAnswers, error } = await supabase
+      .from('attempt_answers')
+      .select(`
+        question_id,
+        selected_answer,
+        is_correct,
+        marks_awarded,
+        questions!question_id (
+          id,
+          question_text,
+          correct_answer,
+          marks,
+          negative_marks
+        )
+      `)
+      .eq('attempt_id', attemptId);
+
+    if (error) return { message: error.message, error: true };
+    return { success: true, data: attemptAnswers };
+  } catch (error: any) {
+    return { message: error.message, error: true };
+  }
+}

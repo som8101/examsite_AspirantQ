@@ -11,7 +11,12 @@ export default async function LiveExamPage(props: { params: Promise<{ id: string
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: attempt } = await supabase.from('exam_attempts').select('*').eq('exam_id', exam.id).eq('student_id', user!.id).single();
+  const role = user?.user_metadata?.role || 'student';
+  if (!user || role !== 'student') {
+    redirect('/login');
+  }
+
+  const { data: attempt } = await supabase.from('exam_attempts').select('*').eq('exam_id', exam.id).eq('student_id', user.id).single();
 
   if (!attempt) {
     redirect(`/student/exams/${exam.id}`);
@@ -26,6 +31,13 @@ export default async function LiveExamPage(props: { params: Promise<{ id: string
     .eq('exam_id', exam.id)
     .eq('verification_status', 'verified')
     .order('question_number', { ascending: true });
+    
+  let finalQuestions = questions || [];
+  
+  if (exam.shuffle_questions && finalQuestions.length > 0) {
+    const hashString = (s: string) => s.split('').reduce((a, b) => (((a << 5) - a) + b.charCodeAt(0)) | 0, 0);
+    finalQuestions = [...finalQuestions].sort((a, b) => hashString(a.id + attempt.id) - hashString(b.id + attempt.id));
+  }
 
   const { data: answers } = await supabase.from('attempt_answers')
     .select('question_id, selected_answer')
@@ -40,7 +52,7 @@ export default async function LiveExamPage(props: { params: Promise<{ id: string
     <LiveExamClient 
       exam={exam} 
       attempt={attempt} 
-      questions={questions || []} 
+      questions={finalQuestions} 
       initialAnswers={initialAnswers} 
     />
   );

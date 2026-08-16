@@ -1,15 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { X, Search, Filter, Download, UserCircle, CheckCircle2, XCircle } from 'lucide-react';
+import { X, Search, Filter, Download, UserCircle, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
+import { getAttemptDetailsAction } from '@/app/admin/exams/actions';
 
 export function ResultsTableClient({ attempts, exam }: { attempts: any[], exam: any }) {
   const [selectedAttempt, setSelectedAttempt] = useState<any>(null);
+  const [attemptDetails, setAttemptDetails] = useState<any[]>([]);
+  const [isLoadingDetails, setIsLoadingDetails] = useState(false);
 
   const completedAttempts = attempts?.filter(a => ['submitted', 'auto_submitted'].includes(a.status)) || [];
   const inProgressAttempts = attempts?.filter(a => a.status === 'in_progress') || [];
+
+  useEffect(() => {
+    if (selectedAttempt) {
+      setIsLoadingDetails(true);
+      getAttemptDetailsAction(selectedAttempt.id).then(res => {
+        if (res.success) {
+          setAttemptDetails(res.data || []);
+        }
+        setIsLoadingDetails(false);
+      });
+    } else {
+      setAttemptDetails([]);
+    }
+  }, [selectedAttempt]);
 
   return (
     <div className="relative">
@@ -75,8 +92,9 @@ export function ResultsTableClient({ attempts, exam }: { attempts: any[], exam: 
                       )}
                     </td>
                     <td className="p-5 text-muted-foreground">
-                      {/* Placeholder for actual time calculation */}
-                      45m 12s
+                      {attempt.submitted_at ? (
+                         `${Math.floor((new Date(attempt.submitted_at).getTime() - new Date(attempt.started_at || attempt.created_at).getTime()) / 60000)}m`
+                      ) : '-'}
                     </td>
                     <td className="p-5 text-muted-foreground">
                       {attempt.submitted_at ? new Date(attempt.submitted_at).toLocaleDateString() : '-'}
@@ -132,29 +150,39 @@ export function ResultsTableClient({ attempts, exam }: { attempts: any[], exam: 
               <div className="space-y-4">
                 <h3 className="font-semibold text-foreground border-b border-border/50 pb-2">Question Breakdown</h3>
                 
-                {/* Mock breakdown items */}
-                {[
-                  { q: 1, correct: true, text: "What is the SI unit of Force?" },
-                  { q: 2, correct: false, text: "Which of the following is a scalar quantity?" },
-                  { q: 3, correct: true, text: "Calculate the acceleration..." },
-                  { q: 4, correct: true, text: "What happens to kinetic energy if..." },
-                ].map((item, i) => (
-                  <div key={i} className="glass-panel p-4 rounded-xl flex gap-4 items-start">
-                    <div className="mt-1">
-                      {item.correct ? (
-                        <CheckCircle2 className="h-5 w-5 text-[#B6CEB4]" />
-                      ) : (
-                        <XCircle className="h-5 w-5 text-red-400" />
-                      )}
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium mb-1">Q{item.q}. {item.text}</div>
-                      <div className={`text-xs px-2 py-1 rounded inline-block ${item.correct ? 'bg-[#D9E9CF]/50 text-[#4a5f42]' : 'bg-red-50 text-red-600'}`}>
-                        {item.correct ? '+1.0 marks' : '-0.25 marks'}
+                {isLoadingDetails ? (
+                  <div className="flex justify-center p-8"><Loader2 className="h-6 w-6 animate-spin text-muted-foreground" /></div>
+                ) : attemptDetails.length > 0 ? (
+                  attemptDetails.map((item, i) => (
+                    <div key={i} className="glass-panel p-4 rounded-xl flex gap-4 items-start">
+                      <div className="mt-1 flex-shrink-0">
+                        {item.is_correct ? (
+                          <CheckCircle2 className="h-5 w-5 text-[#B6CEB4]" />
+                        ) : (
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium mb-2 whitespace-normal break-words">Q{i + 1}. {item.questions?.question_text}</div>
+                        <div className="flex flex-col gap-1 mb-2">
+                           <div className="text-xs text-muted-foreground">
+                             <span className="font-medium text-foreground">Selected:</span> {item.selected_answer || <span className="italic text-muted-foreground">No Answer</span>}
+                           </div>
+                           {!item.is_correct && (
+                             <div className="text-xs text-muted-foreground">
+                               <span className="font-medium text-foreground">Correct:</span> {item.questions?.correct_answer}
+                             </div>
+                           )}
+                        </div>
+                        <div className={`text-xs px-2 py-1 rounded inline-block ${item.is_correct ? 'bg-[#D9E9CF]/50 text-[#4a5f42]' : 'bg-red-50 text-red-600'}`}>
+                          {item.marks_awarded > 0 ? `+${item.marks_awarded}` : item.marks_awarded} marks
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <div className="text-sm text-muted-foreground p-4 text-center">No answers recorded.</div>
+                )}
               </div>
             </div>
           </div>

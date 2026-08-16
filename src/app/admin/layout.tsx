@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { signout } from '@/app/login/actions';
+import { MobileNav } from '@/components/admin/MobileNav';
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   const supabase = await createClient();
@@ -55,9 +56,12 @@ export default async function AdminLayout({ children }: { children: ReactNode })
       <main className="flex-1 overflow-auto relative z-0 md:pl-0">
         {/* We can hide this header or replace it since the Dashboard page has its own title */}
         <header className="glass-panel rounded-none border-t-0 border-x-0 h-16 flex md:hidden items-center px-4 justify-between sticky top-0 z-20">
-          <h2 className="text-lg font-bold text-primary flex items-center gap-2">
-             <BookOpen className="h-5 w-5" /> Aspirants Q
-          </h2>
+          <div className="flex items-center gap-2">
+            <MobileNav signoutAction={signout} />
+            <h2 className="text-lg font-bold text-primary flex items-center gap-2">
+               <BookOpen className="h-5 w-5" /> Aspirants Q
+            </h2>
+          </div>
           <div className="flex items-center gap-4">
             <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
               {user.email?.charAt(0).toUpperCase()}

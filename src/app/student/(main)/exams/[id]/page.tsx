@@ -43,10 +43,7 @@ export default async function ExamInstructionPage(props: { params: Promise<{ id:
     let errorMessage = null;
     
     try {
-      if (exam?.access_code && enteredCode !== exam.access_code) {
-         throw new Error("Invalid access code.");
-      }
-      await startAttempt(examId);
+      await startAttempt(examId, enteredCode);
     } catch (e: any) {
       errorMessage = e.message || 'An error occurred';
     }

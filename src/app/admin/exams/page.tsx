@@ -43,8 +43,8 @@ export default async function ExamsPage() {
         </div>
       </div>
 
-      <div className="border rounded-md bg-white">
-        <Table>
+      <div className="border rounded-md bg-white overflow-x-auto">
+        <Table className="min-w-[800px]">
           <TableHeader>
             <TableRow>
               <TableHead>Title</TableHead>
@@ -59,8 +59,8 @@ export default async function ExamsPage() {
             {exams && exams.length > 0 ? (
               exams.map((exam) => (
                 <TableRow key={exam.id}>
-                  <TableCell className="font-medium">{exam.title}</TableCell>
-                  <TableCell>{exam.subject || '-'}</TableCell>
+                  <TableCell className="font-medium whitespace-nowrap">{exam.title}</TableCell>
+                  <TableCell className="whitespace-nowrap">{exam.subject || '-'}</TableCell>
                   <TableCell>{exam.total_questions}</TableCell>
                   <TableCell>{exam.duration_minutes}m</TableCell>
                   <TableCell>{getStatusBadge(exam.status)}</TableCell>

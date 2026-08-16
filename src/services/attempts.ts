@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 
-export async function startAttempt(examId: string) {
+export async function startAttempt(examId: string, accessCode?: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Unauthorized");
@@ -11,6 +11,10 @@ export async function startAttempt(examId: string) {
   if (exam.status !== 'live') {
     throw new Error("Exam is not currently live");
   }
+  
+  // Actually, we need to accept an access code parameter if we want to validate it.
+  // Wait, startAttempt doesn't take an access code currently.
+  // I need to check how startAttempt is called.
   
   const now = new Date();
   const scheduledStart = new Date(exam.scheduled_start_at || now);
@@ -39,6 +43,47 @@ export async function startAttempt(examId: string) {
        return existingAttempt;
     } else {
        throw new Error("You have already completed this exam");
+    }
+  }
+
+  // Check if exam has codes generated (restricted access)
+  const { data: codeCheck } = await supabase.from('exam_access_codes').select('id').eq('exam_id', examId).limit(1);
+  const requiresCode = codeCheck && codeCheck.length > 0;
+  
+  if (requiresCode) {
+    if (!accessCode) {
+      throw new Error("This exam requires an access code.");
+    }
+    
+    // Attempt to redeem the code
+    // Check if valid and unused
+    const { data: codeData, error: codeErr } = await supabase
+      .from('exam_access_codes')
+      .select('*')
+      .eq('exam_id', examId)
+      .eq('code', accessCode)
+      .single();
+      
+    if (codeErr || !codeData) {
+      throw new Error("Invalid access code.");
+    }
+    
+    if (codeData.status !== 'unused') {
+      if (codeData.redeemed_by_student_id !== user.id) {
+         throw new Error("This access code has already been redeemed.");
+      }
+    } else {
+      // Mark as redeemed
+      const { error: updateErr } = await supabase
+        .from('exam_access_codes')
+        .update({
+          status: 'redeemed',
+          redeemed_by_student_id: user.id,
+          redeemed_at: new Date().toISOString()
+        })
+        .eq('id', codeData.id);
+        
+      if (updateErr) throw new Error("Failed to redeem access code.");
     }
   }
 
