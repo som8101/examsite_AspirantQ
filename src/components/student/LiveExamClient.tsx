@@ -98,9 +98,9 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
   const isMarked = markedForReview.has(q.id);
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-background text-foreground bg-mesh-animated flex flex-col font-sans z-50 overflow-hidden">
+    <div className="min-h-screen w-full pb-28 bg-background text-foreground bg-mesh-animated flex flex-col font-sans relative z-50">
       {/* Header */}
-      <header className="shrink-0 w-full relative z-40 flex justify-between items-center px-4 md:px-12 h-20 bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-sm">
+      <header className="sticky top-0 left-0 w-full z-40 flex justify-between items-center px-4 md:px-12 h-20 bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-sm">
         <div className="flex items-center gap-4">
           <span className="text-2xl font-bold text-primary tracking-tight">Aspirants Q</span>
           <div className="hidden md:flex h-6 w-[1px] bg-border mx-2"></div>
@@ -125,12 +125,12 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-grow p-4 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6 max-w-[1600px] mx-auto w-full overflow-hidden">
+      <main className="flex-grow p-4 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6 max-w-[1600px] mx-auto w-full">
         
         {/* Left/Center: Exam Canvas */}
-        <section className="flex-grow flex flex-col gap-4 md:gap-6 overflow-hidden min-h-0">
+        <section className="flex-grow flex flex-col gap-4 md:gap-6">
           {/* Question Container */}
-          <div className="glass-panel rounded-3xl p-6 md:p-8 flex-grow flex flex-col overflow-y-auto min-h-0">
+          <div className="glass-panel rounded-3xl p-6 md:p-8 flex-grow flex flex-col">
             <div className="flex justify-between items-start mb-8">
               <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
                 Question {q.question_number} of {questions.length}
@@ -192,12 +192,15 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
             </div>
           </div>
           
-          {/* Navigation Controls */}
-          <div className="flex justify-between items-center shrink-0">
+        </section>
+
+        {/* Navigation Controls Fixed to Bottom */}
+        <div className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
+          <div className="max-w-[1600px] mx-auto px-4 md:px-12 py-4 flex justify-between items-center">
             <button 
               onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))} 
               disabled={currentIndex === 0}
-              className="glass-panel px-8 py-3 rounded-full text-sm font-medium text-primary flex items-center gap-2 hover:bg-white/50 transition-colors disabled:opacity-50"
+              className="bg-white border border-border px-8 py-3 rounded-full text-sm font-medium text-primary flex items-center gap-2 hover:bg-gray-50 transition-colors disabled:opacity-50 shadow-sm"
             >
               <ChevronLeft className="h-5 w-5" /> Previous
             </button>
@@ -218,11 +221,11 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
                </button>
             </div>
           </div>
-        </section>
+        </div>
 
         {/* Right Side: Question Palette */}
-        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col gap-4 overflow-hidden min-h-0 md:max-h-full max-md:max-h-[300px]">
-          <div className="glass-panel rounded-3xl p-6 flex flex-col h-full overflow-hidden">
+        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col gap-4 sticky top-28 self-start h-[calc(100vh-180px)] max-md:static max-md:h-auto max-md:max-h-[400px] z-10">
+          <div className="glass-panel rounded-3xl p-6 flex flex-col h-full">
             <h2 className="text-xl font-medium text-foreground mb-6">Question Palette</h2>
             
             {/* Legend */}
