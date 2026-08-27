@@ -98,7 +98,7 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
   const isMarked = markedForReview.has(q.id);
 
   return (
-    <div className="min-h-[100dvh] w-full bg-background text-foreground bg-mesh-animated flex flex-col font-sans relative z-50">
+    <div className="min-h-screen w-full bg-background text-foreground bg-mesh-animated flex flex-col font-sans relative z-50">
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-12 h-20 bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-sm">
         <div className="flex items-center gap-4">
@@ -125,12 +125,12 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-grow pt-32 pb-24 px-4 md:px-12 flex flex-col md:flex-row gap-6 max-w-[1600px] mx-auto w-full">
+      <main className="flex-grow pt-28 pb-24 px-4 md:px-12 flex flex-col md:flex-row gap-6 max-w-[1600px] mx-auto w-full">
         
         {/* Left/Center: Exam Canvas */}
         <section className="flex-grow flex flex-col gap-6">
           {/* Question Container */}
-          <div className="glass-panel rounded-3xl p-6 md:p-12 flex-grow flex flex-col">
+          <div className="glass-panel rounded-3xl p-6 md:p-10 flex-grow flex flex-col">
             <div className="flex justify-between items-start mb-8">
               <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
                 Question {q.question_number} of {questions.length}
@@ -221,8 +221,8 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
         </section>
 
         {/* Right Side: Question Palette */}
-        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col gap-4">
-          <div className="glass-panel rounded-3xl p-6 flex flex-col h-full max-h-[calc(100vh-140px)]">
+        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col gap-4 sticky top-28 h-[calc(100vh-120px)] max-md:static max-md:h-[400px]">
+          <div className="glass-panel rounded-3xl p-6 flex flex-col h-full">
             <h2 className="text-xl font-medium text-foreground mb-6">Question Palette</h2>
             
             {/* Legend */}
