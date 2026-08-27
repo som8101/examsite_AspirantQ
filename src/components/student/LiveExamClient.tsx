@@ -98,7 +98,7 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
   const isMarked = markedForReview.has(q.id);
 
   return (
-    <div className="fixed inset-0 z-50 bg-background text-foreground min-h-screen bg-mesh-animated flex flex-col font-sans">
+    <div className="min-h-[100dvh] w-full bg-background text-foreground bg-mesh-animated flex flex-col font-sans relative z-50">
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-12 h-20 bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-sm">
         <div className="flex items-center gap-4">

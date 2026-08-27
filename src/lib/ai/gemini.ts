@@ -5,7 +5,11 @@ export class GeminiProvider implements AIProvider {
   private ai: GoogleGenAI;
   
   constructor(apiKey?: string) {
-    this.ai = new GoogleGenAI({ apiKey: apiKey || process.env.AI_API_KEY });
+    const key = apiKey || process.env.AI_API_KEY || process.env.GEMINI_API_KEY;
+    if (!key) {
+      throw new Error("AI API Key is missing. Please set AI_API_KEY in your environment variables.");
+    }
+    this.ai = new GoogleGenAI({ apiKey: key });
   }
 
   async extractQuestions(documents: DocumentInfo[], systemPrompt: string): Promise<QuestionExtractionResult> {
