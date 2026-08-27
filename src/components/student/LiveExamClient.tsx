@@ -98,9 +98,9 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
   const isMarked = markedForReview.has(q.id);
 
   return (
-    <div className="min-h-screen w-full bg-background text-foreground bg-mesh-animated flex flex-col font-sans relative z-50">
+    <div className="fixed inset-0 w-full h-full bg-background text-foreground bg-mesh-animated flex flex-col font-sans z-50 overflow-hidden">
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-12 h-20 bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-sm">
+      <header className="shrink-0 w-full relative z-40 flex justify-between items-center px-4 md:px-12 h-20 bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-sm">
         <div className="flex items-center gap-4">
           <span className="text-2xl font-bold text-primary tracking-tight">Aspirants Q</span>
           <div className="hidden md:flex h-6 w-[1px] bg-border mx-2"></div>
@@ -125,12 +125,12 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-grow pt-28 pb-24 px-4 md:px-12 flex flex-col md:flex-row gap-6 max-w-[1600px] mx-auto w-full">
+      <main className="flex-grow p-4 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6 max-w-[1600px] mx-auto w-full overflow-hidden">
         
         {/* Left/Center: Exam Canvas */}
-        <section className="flex-grow flex flex-col gap-6">
+        <section className="flex-grow flex flex-col gap-4 md:gap-6 overflow-hidden min-h-0">
           {/* Question Container */}
-          <div className="glass-panel rounded-3xl p-6 md:p-10 flex-grow flex flex-col">
+          <div className="glass-panel rounded-3xl p-6 md:p-8 flex-grow flex flex-col overflow-y-auto min-h-0">
             <div className="flex justify-between items-start mb-8">
               <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
                 Question {q.question_number} of {questions.length}
@@ -193,7 +193,7 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
           </div>
           
           {/* Navigation Controls */}
-          <div className="flex justify-between items-center mt-auto">
+          <div className="flex justify-between items-center shrink-0">
             <button 
               onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))} 
               disabled={currentIndex === 0}
@@ -221,8 +221,8 @@ export function LiveExamClient({ exam, attempt, questions, initialAnswers }: any
         </section>
 
         {/* Right Side: Question Palette */}
-        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col gap-4 sticky top-28 h-[calc(100vh-120px)] max-md:static max-md:h-[400px]">
-          <div className="glass-panel rounded-3xl p-6 flex flex-col h-full">
+        <aside className="w-full md:w-80 flex-shrink-0 flex flex-col gap-4 overflow-hidden min-h-0 md:max-h-full max-md:max-h-[300px]">
+          <div className="glass-panel rounded-3xl p-6 flex flex-col h-full overflow-hidden">
             <h2 className="text-xl font-medium text-foreground mb-6">Question Palette</h2>
             
             {/* Legend */}
